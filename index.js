@@ -2,6 +2,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const Draw = new DrawingTools(ctx);
+
 const items = [
     new Item(103),
     new Item(211),
@@ -31,11 +32,14 @@ const items = [
     new Item(300),
     new Item(470),
     new Item(207),
-    new Item(200)
+    new Item(200),
+    new Item(10),
+    new Item(5),
+    new Item(5)
 ];
-const max_capacity = 10000;
-const n_items_max = 24;
 
+const n_items_max = 24;
+const max_capacity = 10000;
 
 const solver = new GeneticSolver(max_capacity, items, n_items_max);
 solver.generation_max = 500;
@@ -64,12 +68,12 @@ let interval = setInterval(function() {
         return;
     }
     const current_state = evolutions[counter];
-
-    document.querySelector("#text").innerText = `\nTotal space filled : ${current_state.fitest.total_size } / ${max_capacity}`; 
-    document.querySelector("#text").innerText += `\n\nFitest Score : ${current_state.fitest.score}`; 
-    document.querySelector("#text").innerText += `\n\nGeneration : ${current_state.generation}`; 
-    document.querySelector("#text").innerText += `\nN. items : ${current_state.clean_solution.length} / ${n_items_max}`; 
-    document.querySelector("#text").innerText += `\nTime delay : ${Math.round(ms)} ms`; 
+	const total_size_text = current_state.fitest.total_size > max_capacity ? `<span style='color:red'>${current_state.fitest.total_size}</span>` : current_state.fitest.total_size;
+    document.querySelector("#text").innerHTML = `\nTotal space filled : ${ total_size_text } / ${max_capacity}`; 
+    document.querySelector("#text").innerHTML += `<br/><br/>Fittest Score : ${current_state.fitest.score}`; 
+    document.querySelector("#text").innerHTML += `<br/><br/>Generation : ${current_state.generation}`; 
+    document.querySelector("#text").innerHTML += `<br/>N. items : ${current_state.clean_solution.length} / ${n_items_max}`; 
+    document.querySelector("#text").innerHTML += `<br/>Time delay : ${Math.round(ms)} ms`; 
 
     let solution = evolutions[counter].clean_solution;
     Draw.clear(0, 0,  canvas.width, canvas.height);
