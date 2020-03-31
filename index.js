@@ -2,7 +2,6 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const Draw = new DrawingTools(ctx);
-
 const items = [
     new Item(103),
     new Item(211),
@@ -37,6 +36,7 @@ const items = [
 const max_capacity = 10000;
 const n_items_max = 24;
 
+
 const solver = new GeneticSolver(max_capacity, items, n_items_max);
 solver.generation_max = 500;
 
@@ -46,7 +46,7 @@ let solution = solver.findOptimalConfiguration(function(temp_sol, fitest, gen) {
         evolutions.push({
             clean_solution : temp_sol,
             fitest : fitest, 
-            gen : gen,
+            generation : gen,
             space_filled_size : temp_sol.reduce((x, y) => x.size + y.size)
         });
     }
@@ -64,15 +64,15 @@ let interval = setInterval(function() {
         return;
     }
 
-    document.querySelector("#text").innerText = `Fitest Score : ${evolutions[counter].fitest.score}`; 
-    document.querySelector("#text").innerText += `\nSpace filled : ${evolutions[counter].fitest.total_size } / ${max_capacity}`; 
-    document.querySelector("#text").innerText += `\nGeneration : ${counter + 1}`; 
+    document.querySelector("#text").innerText = `\nSpace filled : ${evolutions[counter].fitest.total_size } / ${max_capacity}`; 
+    document.querySelector("#text").innerText += `\n\nFitest Score : ${evolutions[counter].fitest.score}`; 
+    document.querySelector("#text").innerText += `\n\nGeneration : ${evolutions[counter].generation}`; 
     document.querySelector("#text").innerText += `\nN. items : ${evolutions[counter].clean_solution.length} / ${n_items_max}`; 
     document.querySelector("#text").innerText += `\nTime delay : ${Math.round(ms)} ms`; 
 
     let solution = evolutions[counter].clean_solution;
     Draw.clear(0, 0,  canvas.width, canvas.height);
-    temp_sol = solution.sort((a, b) => a.size < b.size);
+    // solution.sort((a, b) => a.size < b.size);
     Draw.drawSolution(solution, max_capacity, canvas.width, canvas.height);
     counter++;
 }, ms );
