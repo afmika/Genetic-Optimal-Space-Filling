@@ -1,0 +1,2 @@
+# Genetic-Optimal-Space-Filling
+Imagine having a limited space and you want to fill it with N objects of different sizes in order to minimize the remaining empty space.  This problem can be solved using a simple genetic algorithm approach where each DNA component represents an object with a given size. The advantage of this approach is that we can set the maximum number of objects to fit into the space to be filled.
