@@ -5,11 +5,18 @@
 		<meta charset="utf-8"> 
 		<meta name="viewport" content="width=device-width"> 
 	 
-		<title>afGenetic - Object arrangement</title> 
+		<title>afGenetic - Optimal arrangement</title> 
 
 		<style>
 		canvas {
-			border: 2px Solid Black;
+			border: 1px Solid rgb(82, 149, 207);
+		}
+		h2 {
+			color:rgb(108, 175, 235);
+		}
+		p {
+			color: rgb(2, 64, 117);
+			font-size: 130%
 		}
 		</style>
 	</head> 
@@ -17,9 +24,9 @@
 		<div class="content">
 
             <div class="row">
-                    <h3 class="text text-primary">Object arrangement - afmika</h3>
-                    <canvas id="canvas_objects" height="200" width="400"></canvas>
-                    <canvas id="canvas" height="400" width="100"></canvas>
+                    <h2 class="text text-primary">Optimal arrangement - afmika</h2>
+					<canvas id="canvas" width="1000" height="100"></canvas>
+                    <p class="text text-primary" id="text"></p>					
             </div>
         </div>
 		<script src="classes/GeneticSolver.js" type="text/javascript"></script>

@@ -101,4 +101,23 @@ class DrawingTools {
 		this.context.strokeRect(rect.x, rect.y, rect.width, rect.height);
 		this.context.closePath();
 	}
+
+	/**
+	 * @param {Item[]} items 
+	 * @param {number} max_x 
+	 * @param {number} max_y 
+	 * @param {Item[]} selected 
+	 */
+	drawSolution(solution, max_capacity, max_width, max_height) {
+		let x = 0;
+		solution.forEach(item => {
+			let r = (item.size / max_capacity);
+			let color = [108, 178, Math.floor(200 + r * 155)];
+			let length = r * max_width;
+			let rect = new RectangleShape(x, 0, length, max_height);
+			this.text(item.size , x, 10)
+			x += length;
+			this.rectShape(rect, color);
+		});
+	}
 }
