@@ -63,11 +63,12 @@ let interval = setInterval(function() {
         clearInterval( interval );
         return;
     }
+    const current_state = evolutions[counter];
 
-    document.querySelector("#text").innerText = `\nSpace filled : ${evolutions[counter].fitest.total_size } / ${max_capacity}`; 
-    document.querySelector("#text").innerText += `\n\nFitest Score : ${evolutions[counter].fitest.score}`; 
-    document.querySelector("#text").innerText += `\n\nGeneration : ${evolutions[counter].generation}`; 
-    document.querySelector("#text").innerText += `\nN. items : ${evolutions[counter].clean_solution.length} / ${n_items_max}`; 
+    document.querySelector("#text").innerText = `\nTotal space filled : ${current_state.fitest.total_size } / ${max_capacity}`; 
+    document.querySelector("#text").innerText += `\n\nFitest Score : ${current_state.fitest.score}`; 
+    document.querySelector("#text").innerText += `\n\nGeneration : ${current_state.generation}`; 
+    document.querySelector("#text").innerText += `\nN. items : ${current_state.clean_solution.length} / ${n_items_max}`; 
     document.querySelector("#text").innerText += `\nTime delay : ${Math.round(ms)} ms`; 
 
     let solution = evolutions[counter].clean_solution;
