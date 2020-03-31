@@ -53,7 +53,8 @@ function Item(size, id) {
  */
 function Member(dna) {
 	this.dna = dna;
-	this.score = 0;
+    this.score = 0;
+    this.total_size = 0;
 }
 
 /**
@@ -198,7 +199,17 @@ class GeneticSolver {
                 pass.push( temp.id );
             }
         }
+        // maximizes the space
+        member.total_size = x;
         member.score = x > this.max_capacity ? 0 : x;
+
+        // maximizes the number of items
+        // ex. we have 100 free space that we can fill in
+        // two differents ways (1) : 60 + 40 or  (2) : 60 + 10 + 10 + 20
+        // the 2nd solution optimizes both the number of element and the space filled
+        if(member.score > 0) {
+            member.score += pass.length;
+        }
 	}
     
     /**

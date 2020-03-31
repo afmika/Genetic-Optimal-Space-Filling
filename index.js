@@ -46,7 +46,8 @@ let solution = solver.findOptimalConfiguration(function(temp_sol, fitest, gen) {
         evolutions.push({
             clean_solution : temp_sol,
             fitest : fitest, 
-            gen : gen
+            gen : gen,
+            space_filled_size : temp_sol.reduce((x, y) => x.size + y.size)
         });
     }
     if(gen % 300 == 0) {
@@ -63,9 +64,10 @@ let interval = setInterval(function() {
         return;
     }
 
-    document.querySelector("#text").innerText = `Space filled : ${evolutions[counter].fitest.score}`; 
-    document.querySelector("#text").innerText += `\nNb. items : ${evolutions[counter].clean_solution.length} / ${n_items_max}`; 
-    document.querySelector("#text").innerText += `\n\nMax Capacity : ${ max_capacity }`; 
+    document.querySelector("#text").innerText = `Fitest Score : ${evolutions[counter].fitest.score}`; 
+    document.querySelector("#text").innerText += `\nSpace filled : ${evolutions[counter].fitest.total_size } / ${max_capacity}`; 
+    document.querySelector("#text").innerText += `\nGeneration : ${counter + 1}`; 
+    document.querySelector("#text").innerText += `\nN. items : ${evolutions[counter].clean_solution.length} / ${n_items_max}`; 
     document.querySelector("#text").innerText += `\nTime delay : ${Math.round(ms)} ms`; 
 
     let solution = evolutions[counter].clean_solution;
