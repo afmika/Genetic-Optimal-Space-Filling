@@ -1,4 +1,4 @@
-const classes = require("./classes/GeneticSolver");
+const classes = require("../classes/GeneticSolver");
 const GeneticSolver = classes.GeneticSolver;
 const Item = classes.Item;
 
