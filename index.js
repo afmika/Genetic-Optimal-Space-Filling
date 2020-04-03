@@ -38,7 +38,7 @@ const items = [
     new Item(5)
 ];
 
-const n_items_max = 24;
+const n_items_max = 25;
 const max_capacity = 10000;
 
 const solver = new GeneticSolver(max_capacity, items, n_items_max);
